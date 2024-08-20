@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>F1 API Documentation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/prism.css" />
+    <link rel="stylesheet" href="css/document.css" />
+  </head>
+  <body>
+    <!--Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <img
+          src="images/f1icon.jpg"
+          class="img-thumbnail rounded-circle border border-danger me-2"
+          style="max-height: 40px"
+          alt=""
+        />
+        <a class="navbar-brand d-flex align-items-center" href="#"
+          >F1 API Documentation</a
+        >
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#reference">About us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div
+      class="sidebar bg-white border p-3 overflow-auto sidebar d-none d-md-block"
+    >
+      <ul class="list-unstyled">
+        <a href="#Introduction" class="text-decoration-none h4 text-dark"
+          >Introduction</a
+        >
+        <li>
+          <a class="text-decoration-none text-dark" href="#CRUD">CRUD</a>
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#APIEndpoints"
+            >API Endpoints</a
+          >
+        </li>
+        <br>
+        <!-- Driver -->
+          <a class="text-decoration-none h4 text-dark" href="#Driver">Driver</a>
+        </li>
+
+        <li>
+          <a class="text-decoration-none text-dark" href="#DriverSchema"
+            >Driver schema</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getAllDrivers"
+            >Get all drivers</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getASingleDriver"
+            >Get a single driver</a
+          >
+        </li>
+
+        <!-- Race -->
+        <br />
+        <a class="text-decoration-none h4 text-dark" href="#Race">Race</a>
+        <li>
+          <a class="text-decoration-none text-dark" href="#RaceSchema"
+            >Race schema</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getAllRaces"
+            >Get all races</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getASingleRace"
+            >Get a single race</a
+          >
+        </li>
+
+        <!-- Team -->
+        <br />
+        <a class="text-decoration-none h4 text-dark" href="#Team">Team</a>
+        <li>
+          <a class="text-decoration-none text-dark" href="#TeamSchema"
+            >Team schema</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getAllTeams"
+            >Get all teams</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getASingleTeam"
+            >Get a single team</a
+          >
+        </li>
+
+        <!-- Custom Driver -->
+        <br />
+        <a class="text-decoration-none h4 text-dark" href="#CustomDriver"
+          >Custom Driver</a
+        >
+        <li>
+          <a class="text-decoration-none text-dark" href="#CustomDriverSchema"
+            >Custom driver schema</a
+          >
+        </li>
+        <li>
+          <a class="text-decoration-none text-dark" href="#getAllCustomDrivers"
+            >Get all custom drivers</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-decoration-none text-dark"
+            href="#getASingleCustomDriver"
+            >Get a single custom driver</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content">
+      <article>
+        <h1>Documentation</h1>
+        <br />
+        <br />
+        <h3 id="Introduction">Introduction</h3>
+        <p>
+          This documentation will help you get familiar with the resources of
+          the F1 API and show you how to make different queries, so that you can
+          get the most out of it.
+        </p>
+      </article>
+      <br />
+      <article>
+        <h4 id="CRUD">CRUD</h4>
+        <p>
+          All tables have methods that include full CRUD operations on the API
+          side, it will be possible to create, read, update and delete data from
+          the database. All functions are available in the API and can be used
+          in the application.
+        </p>
+      </article>
+      <br />
+      <article>
+        <h4 id="APIEndpoints">API Endpoints</h4>
+        <p class="fw-bold">Base url: http://localhost:5218/api</p>
+        <p>
+          The base url contains information about all available API's resources.
+        </p>
+        <pre><code class="language-csharp">
+  GET http://localhost:5218/api
+{
+  "Driver": http://localhost:5218/api/Drivers
+  "Race": http://localhost:5218/api/Races
+  "Team": http://localhost:5218/api/Teams
+  "CustomDriver": http://localhost:5218/api/CustomDrivers
+  "ImageUpload": http://localhost:5218/api/ImageUpload
+
+}</code></pre>
+        <br />
+      </article>
+      <!-- Driver section -->
+      <section id="Driver">
+        <h3>Driver</h3>
+        <p>There is a total of 20 drivers sorted by id.</p>
+        <br />
+        <article id="DriverSchema">
+          <h4>Driver schema</h4>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Id</th>
+                <td>Int</td>
+                <td>The id of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Name</th>
+                <td>String</td>
+                <td>The name of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Age</th>
+                <td>Int</td>
+                <td>The age of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Nationality</th>
+                <td>String</td>
+                <td>The nationality of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Image</th>
+                <td>String</td>
+                <td>The image of driver</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+        <br />
+        <article id="getAllDrivers">
+          <h4>Get all drivers</h4>
+          <p>
+            You can access the list of drivers by using the
+            <code class="language-text">/Drivers</code> endpoint. It will return
+            a list with all drivers with these properties.
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/Drivers
+{
+  "id": 1
+  "name": Sergio Perez
+  "age": 34
+  "nationality": Mexico
+  "image": sergio.jpg
+
+}</code></pre>
+          <br />
+        </article>
+        <article id="getASingleDriver">
+          <h4>Get a single driver</h4>
+          <p>
+            You can get a single driver by adding the
+            <code class="language-text">id</code> as a parameter:
+            <code class="language-text">/Drivers/1</code>
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/Drivers/1
+{
+  "id": 1
+  "name": Sergio Perez
+  "age": 34
+  "nationality": Mexico
+  "image": sergio.jpg
+
+}</code></pre>
+        </article>
+      </section>
+      <br />
+      <!-- Race section -->
+      <section id="Race">
+        <h3>Race</h3>
+        <p>There is a total of 15 races sorted by id.</p>
+        <br />
+        <article id="RaceSchema">
+          <h4>Race schema</h4>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Id</th>
+                <td>Int</td>
+                <td>The id of race</td>
+              </tr>
+              <tr>
+                <th scope="row">WinnerTime</th>
+                <td>String</td>
+                <td>WinnerTime of race</td>
+              </tr>
+              <tr>
+                <th scope="row">WinnerName</th>
+                <td>String</td>
+                <td>WinnerName of race</td>
+              </tr>
+              <tr>
+                <th scope="row">GrandPrix</th>
+                <td>String</td>
+                <td>country where the race took place</td>
+              </tr>
+              <tr>
+                <th scope="row">NumberOfLaps</th>
+                <td>Int</td>
+                <td>Number of laps</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+        <br />
+        <article id="getAllRaces">
+          <h4>Get all races</h4>
+          <p>
+            You can access the list of races by using the
+            <code class="language-text">/Races</code> endpoint. It will return a
+            list with all races with these properties.
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/Races
+{
+  "id": 7
+  "WinnerName": Max Verstappen
+  "WinnterTime": 1:27:57.940
+  "GrandPrix": Spain
+  "NumberOfLaps": 66
+
+}</code></pre>
+          <br />
+          <article id="getASingleRace">
+            <h4>Get a single race</h4>
+            <p>
+              You can get a single race by adding the
+              <code class="language-text">id</code> as a parameter:
+              <code class="language-text">/Races/7</code>
+            </p>
+            <pre><code class="language-csharp">
+  GET http://localhost:5218/api/Races/7
+{
+  "id": 7
+  "WinnerName": Max Verstappen
+  "WinnterTime": 1:27:57.940
+  "GrandPrix": Spain
+  "NumberOfLaps": 66
+
+}</code></pre>
+          </article>
+          <br />
+        </article>
+      </section>
+      <!--Team section -->
+      <section id="Team">
+        <h3>Team</h3>
+        <p>There is a total of 10 teams sorted by id.</p>
+        <br />
+        <article id="TeamSchema">
+          <h4>Team schema</h4>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Id</th>
+                <td>Int</td>
+                <td>The id of team</td>
+              </tr>
+              <tr>
+                <th scope="row">Manufacturer</th>
+                <td>String</td>
+                <td>The manufacturer of car</td>
+              </tr>
+              <tr>
+                <th scope="row">Image</th>
+                <td>String</td>
+                <td>The image of car</td>
+              </tr>
+              <tr>
+                <th scope="row">Driver1</th>
+                <td>String</td>
+                <td>The name of driver1</td>
+              </tr>
+              <tr>
+                <th scope="row">Driver2</th>
+                <td>String</td>
+                <td>The name of driver2</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+        <br />
+        <article id="getAllTeams">
+          <h4>Get all teams</h4>
+          <p>
+            You can access the list of teams by using the
+            <code class="language-text">/Teams</code> endpoint. It will return a
+            list with all teams with these properties.
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/Teams
+{
+  "id": 9
+  "Manufacturer": Alfa Romeo
+  "Image": team9.jpg
+  "Driver1": Valteri Bottas
+  "Driver2": Zhou Guanyu
+
+}</code></pre>
+          <br />
+        </article>
+        <article id="getASingleTeam">
+          <h4>Get a single Team</h4>
+          <p>
+            You can get a single team by adding the
+            <code class="language-text">id</code> as a parameter:
+            <code class="language-text">/Teams/9</code>
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/Teams/9
+{
+  "id": 9
+  "Manufacturer": Alfa Romeo
+  "Image": team9.jpg
+  "Driver1": Valteri Bottas
+  "Driver2": Zhou Guanyu
+
+}</code></pre>
+        </article>
+      </section>
+      <!--Custom Driver Section -->
+      <br />
+      <section id="CustomDriver">
+        <h3>Custom driver</h3>
+        <p>
+          There is a custom driver table where both professional and amateur
+          drivers can join and drive different kind of racing cars.
+        </p>
+        <br />
+        <article id="CustomDriverSchema">
+          <h4>Custom driver schema</h4>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Type</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Id</th>
+                <td>Int</td>
+                <td>The id of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Name</th>
+                <td>String</td>
+                <td>The name of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Age</th>
+                <td>Int</td>
+                <td>The age of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">Nationality</th>
+                <td>String</td>
+                <td>The nationality of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">DriverImage</th>
+                <td>String</td>
+                <td>The image of driver</td>
+              </tr>
+              <tr>
+                <th scope="row">CarImage</th>
+                <td>String</td>
+                <td>The image of car</td>
+              </tr>
+              <tr>
+                <th scope="row">CarBrand</th>
+                <td>String</td>
+                <td>The brand of car</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+        <br />
+        <article id="getAllCustomDrivers">
+          <h4>Get all custom drivers</h4>
+          <p>
+            You can access the list of custom drivers by using the
+            <code class="language-text">/CustomDrivers</code> endpoint. It will
+            return a list with all custom drivers with these properties.
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/CustomDrivers
+{
+  "id": *
+  "name": *
+  "age": *
+  "nationality": *
+  "driverimage": *
+  "carimage": *
+  "carbrand": *
+
+}</code></pre>
+          <br />
+        </article>
+        <article id="getASingleCustomDriver">
+          <h4>Get a single Custom driver</h4>
+          <p>
+            You can get a single custom driver by adding the
+            <code class="language-text">id</code> as a parameter:
+            <code class="language-text">/CustomDrivers/1</code>
+          </p>
+          <pre><code class="language-csharp">
+  GET http://localhost:5218/api/CustomDrivers/1
+{
+  "id": *
+  "name": *
+  "age": *
+  "nationality": *
+  "driverimage": *
+  "carimage": *
+  "carbrand": *
+
+}</code></pre>
+        </article>
+      </section>
+    </div>
+
+    <!-- Bootstrap JS scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/prism.js"></script>
+  </body>
+</html>

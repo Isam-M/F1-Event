@@ -1,0 +1,322 @@
+:root {
+  --car-width: 10rem;
+  --car-height: 5rem;
+  --container-width: 30rem;
+  --container-height: 22rem;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  color: #333;
+  font-weight: bold;
+  margin-top: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Road and Car Container Styles */
+.road-container {
+  background-image: url("/images/grid-bg1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+.finish-line {
+  background-image: url("/public/images/finish-line-3.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  width: 28.35rem;
+  height: 4rem;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 2;
+}
+.img-container {
+  position: relative;
+  width: var(--car-width);
+  height: var(--car-height);
+}
+
+.car-image,
+.driver-image {
+  position: absolute;
+  width: 15rem;
+  height: 5rem;
+  object-fit: cover;
+  transform: scale(0.83);
+  rotate: -45deg;
+}
+
+.driver-image {
+  position: relative;
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+  background-color: white;
+  bottom: 0.75rem;
+  left: 6rem;
+}
+
+/* Driver Display Styles */
+.driver {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.driver:hover {
+  transform: scale(1.1);
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.driver-container {
+  display: flex;
+  justify-content: center;
+}
+
+.driver-container:nth-child(odd) {
+  transform: translateX(3.5rem);
+}
+
+.driver-container:nth-child(even) {
+  transform: translate(-8rem);
+}
+.driver-container:last-child {
+  padding-bottom: 6rem;
+}
+/* Driver Info and Quiz Styles */
+
+.driver-info-container {
+  left: 5rem;
+}
+.driver-info-image {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+}
+.quiz-container,
+.driver-info-container {
+  position: fixed;
+  top: 65%;
+  transform: translateY(-50%);
+  background: #f1f1f1; /* White Background */
+  color: #212121; /* Dark Gray Text */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: var(--container-width);
+  height: var(--container-height);
+  border: 1px solid #d32f2f;
+  z-index: 1000;
+}
+
+.quiz-container {
+  right: 5rem;
+}
+@media (max-width: 1550px) {
+  .driver-info-container,
+  .quiz-container {
+    transform: translateX(-50%);
+    width: var(--container-width);
+    z-index: 10;
+  }
+
+  .driver-info-container {
+    position: absolute; /* Keep them overlaying */
+    top: 30rem; /* Adjust the top position */
+    left: 25%;
+  }
+  .quiz-container {
+    position: absolute;
+    top: 30rem;
+    left: 75%;
+  }
+
+  .road-container {
+    position: absolute;
+    top: 25rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  .title {
+    position: absolute;
+    top: 56rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+}
+
+@media (max-width: 1050px) {
+  .driver-info-container,
+  .quiz-container {
+    position: absolute; /* Keep them overlaying */
+    top: 30rem; /* Adjust the top position */
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--container-width);
+    z-index: 10;
+  }
+
+  .quiz-container {
+    top: 53rem;
+    bottom: 10%; /* Adjust the bottom position */
+  }
+
+  .road-container {
+    position: absolute;
+    top: 50rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+
+  .title {
+    position: absolute;
+    top: 79rem;
+    left: 50%;
+    transform: translate(-50%, 50%);
+  }
+}
+
+.question-option {
+  background-color: #ffebee; /* Light Red */
+  border: 1px solid #d32f2f; /* Deep Red */
+  color: #212121; /* Dark Gray */
+  border-radius: 5px;
+  padding: 10px 20px; /* Adjust as needed */
+  margin-bottom: 10px; /* Adjust spacing between options */
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  width: 80%; /* Adjust width as needed */
+  text-align: center;
+}
+
+.question-option:hover {
+  background-color: #b71c1c; /* Richer Red */
+  color: #ffffff; /* White */
+}
+
+.question-box {
+  margin: 10px; /* Adjust as needed */
+  text-align: center;
+}
+
+.question-box h2 {
+  font-size: 1.5rem; /* Adjust text size as needed */
+  margin-bottom: 10px;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.quiz-button {
+  position: absolute;
+  width: auto;
+  height: 4rem;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.quiz-text {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  color: #d32f2f; /* Deep Red */
+  font-size: 1.3rem; /* Adjust the size as needed */
+  margin-bottom: 20px; /* Space above the button */
+  font-weight: bold; /* Bold text */
+}
+
+.alert-container {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050; /* Ensures it's above other content */
+  width: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.quiz-end-alert {
+  position: fixed;
+  top: 26rem;
+}
+
+.quiz-rules-section {
+  width: 100%; /* Adjust width as needed */
+  margin: 0 auto; /* Centering if needed */
+  padding: 15px;
+  background-color: #f1f1f1; /* Light background for the section */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: var(--box-shadow);
+  font-size: 1rem; /* Adjust font size as needed */
+  margin-bottom: 2rem;
+}
+
+.rules-heading {
+  margin-bottom: 10px;
+  color: #333; /* Darker color for the heading */
+  font-size: 1.2rem; /* Larger font size for the heading */
+}
+
+.quiz-rules-section ul {
+  padding-left: 20px; /* Indent for list */
+}
+
+.quiz-rules-section li {
+  margin-bottom: 5px; /* Space between list items */
+}
+.quiz-summary {
+  color: #6d0303; /* Red text for contrast */
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.quiz-summary h2 {
+  color: #212121; /* Darker color for heading */
+  margin-bottom: 15px;
+}
+
+.quiz-summary p {
+  font-size: 1.1rem; /* Slightly larger font for readability */
+}
+
+.quiz-summary .stat {
+  font-weight: bold; /* Bold for emphasis */
+  color: #d32f2f; /* Red to highlight numbers */
+}
+
+.btn-danger:hover {
+  background-color: #ffffff;
+  color: #d32f2f;
+}

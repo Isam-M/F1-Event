@@ -1,0 +1,13 @@
+.driverImage {
+  width: 10rem;
+  margin: 10px auto;
+  display: block;
+  border-radius: 50%;
+}
+
+.cardBody {
+  background-color: #222;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}

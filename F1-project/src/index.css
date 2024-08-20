@@ -1,0 +1,9 @@
+.list-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+body {
+  font-family: "inter", sans-serif;
+  padding-top: 100px;
+}
